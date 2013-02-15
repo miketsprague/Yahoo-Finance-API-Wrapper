@@ -1,0 +1,18 @@
++------------------+------------+------+-----+---------------------+-------+
+| Field            | Type       | Null | Key | Default             | Extra |
++------------------+------------+------+-----+---------------------+-------+
+| account_id       | int(11)    | NO   | PRI | 0                   |       |
+| symbol           | char(10)   | NO   | PRI | NULL                |       |
+| type             | char(10)   | NO   | PRI | NULL                |       |
+| num_shares       | float      | NO   | PRI | 0                   |       |
+| purchase_price   | float      | NO   | PRI | 0                   |       |
+| is_valid         | tinyint(1) | NO   |     | 1                   |       |
+| date_created     | datetime   | NO   | PRI | 0000-00-00 00:00:00 |       |
+| date_invalidated | datetime   | YES  |     | NULL                |       |
++------------------+------------+------+-----+---------------------+-------+
+
+INSERT INTO AccountOwnedStocks VALUES (1, 'TSZT', 'Sell', 100, 5.00, 1, NOW(), NULL);
+
+
+
+select account_id, SUM(num_shares*purchase_price) from AccountOwnedStocks as stocks inner join Account on stocks.account_id = Account.id where account_id = 1337;

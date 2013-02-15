@@ -1,0 +1,100 @@
+
+Warning: date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Los_Angeles' for 'PDT/-7.0/DST' instead in /Users/michaelsprague/Desktop/Research/Finance/Finance.php on line 23
+
+Warning: date(): It is not safe to rely on the system's timezone settings. You are *required* to use the date.timezone setting or the date_default_timezone_set() function. In case you used any of those methods and you are still getting this warning, you most likely misspelled the timezone identifier. We selected 'America/Los_Angeles' for 'PDT/-7.0/DST' instead in /Users/michaelsprague/Desktop/Research/Finance/Finance.php on line 24
+array(4) {
+  [0]=>
+  string(9) "KWU12.KBT"
+  [1]=>
+  string(8) "CU12.CBT"
+  [2]=>
+  string(8) "SU12.CBT"
+  [3]=>
+  string(9) "CTU12.NYB"
+}
+array(7) {
+  [0]=>
+  string(1) "s"
+  [1]=>
+  string(1) "n"
+  [2]=>
+  string(2) "l1"
+  [3]=>
+  string(2) "t1"
+  [4]=>
+  string(2) "d1"
+  [5]=>
+  string(2) "c1"
+  [6]=>
+  string(2) "p2"
+}
+array(4) {
+  [0]=>
+  array(7) {
+    ["Symbol"]=>
+    string(9) "KWU12.KBT"
+    ["Name"]=>
+    string(17) "Hard Red Winter W"
+    ["Last Trade (Price Only)"]=>
+    string(6) "885.50"
+    ["Last Trade Time"]=>
+    string(6) "7:35pm"
+    ["Last Trade Date"]=>
+    string(9) "8/19/2012"
+    ["Change"]=>
+    string(6) "+13.00"
+    ["Change in Percent"]=>
+    string(6) "+1.49%"
+  }
+  [1]=>
+  array(7) {
+    ["Symbol"]=>
+    string(8) "CU12.CBT"
+    ["Name"]=>
+    string(11) "Corn Sep 12"
+    ["Last Trade (Price Only)"]=>
+    string(6) "798.50"
+    ["Last Trade Time"]=>
+    string(6) "8:09pm"
+    ["Last Trade Date"]=>
+    string(9) "8/20/2012"
+    ["Change"]=>
+    string(5) "+0.75"
+    ["Change in Percent"]=>
+    string(6) "+0.09%"
+  }
+  [2]=>
+  array(7) {
+    ["Symbol"]=>
+    string(8) "SU12.CBT"
+    ["Name"]=>
+    string(15) "Soybeans Sep 12"
+    ["Last Trade (Price Only)"]=>
+    string(7) "1671.00"
+    ["Last Trade Time"]=>
+    string(6) "8:09pm"
+    ["Last Trade Date"]=>
+    string(9) "8/20/2012"
+    ["Change"]=>
+    string(6) "+14.75"
+    ["Change in Percent"]=>
+    string(6) "+0.89%"
+  }
+  [3]=>
+  array(7) {
+    ["Symbol"]=>
+    string(9) "CTU12.NYB"
+    ["Name"]=>
+    string(13) "Cotton Sep 12"
+    ["Last Trade (Price Only)"]=>
+    string(5) "98.72"
+    ["Last Trade Time"]=>
+    string(6) "3:07pm"
+    ["Last Trade Date"]=>
+    string(10) "12/21/2011"
+    ["Change"]=>
+    string(4) "0.00"
+    ["Change in Percent"]=>
+    string(5) "0.00%"
+  }
+}
