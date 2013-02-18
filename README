@@ -1,0 +1,6 @@
+Specify characters to use it like so
+
+function getDataOnSymbols($symbols, $tags = "s|n|a|l1|c1|p2|j|k|j1|e|r|d|y|p5|p6"){
+	$finance = new Finance($tags);
+	return $finance->get_quotes($symbols);
+}
