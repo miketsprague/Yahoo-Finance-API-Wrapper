@@ -1,8 +1,6 @@
 <?php
 require_once "Mail.php";
 
-date_default_timezone_set("America/Los_Angeles");
-sendReport("miketsprague@gmail.com", "Transaction Summary for" . date('l jS \of F Y h:i:s A'), "Test\n\nLove, Mike");
 function sendReport($to, $subject, $body) {
         $from = "<msprague.investing.gmail.com>";
         $to = "<$to>";

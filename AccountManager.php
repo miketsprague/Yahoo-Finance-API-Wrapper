@@ -1,7 +1,10 @@
 <?php
 
-//buyShares(1337, 'AAPL', 100, 52);
+//var_dump(getAllSharesOwned(1337));
+//echo getValueOfSharesOwned(1337, 'AAPL');
 //echo calcluateProfitOnStock(1337, 'AAPL', 51);
+//echo insertAmountIntoAccount(1337, 706700);
+//echo getBalanceFromAccount(1337);
 /*echo 'balance: '.getBalanceFromAccount(1337);
 echo 'shares: '.getNumSharesOwned(1337, 'AAPL');
 echo '\nSell all:'.sellAllShares(1337, 'AAPL', 100);
@@ -81,8 +84,43 @@ function getBalanceFromAccount($id)
 	return -1;
 }
 
+function getAllSharesOwned($id) 
+{
+        //sql connect to DB
+        $mysqli = getSQLCredentials();
+
+        /* check connection */
+        if (mysqli_connect_errno()) {
+            printf("Connect failed: %s\n", mysqli_connect_error());
+            exit();
+        }
+
+        $id = $mysqli->real_escape_string($id);
+        $result = $mysqli->query("select distinct symbol from AccountOwnedStocks as stocks inner join Account on stocks.account_id = Account.id where account_id = $id  AND is_valid = 1");
+
+        $ret = Array();
+        while ($row = $result->fetch_row()) {
+                $ret[] = $row[0];
+        }
+        $mysqli->close();
+        return $ret;
+}
 
 function getNumSharesOwned($id, $symbol)
+{
+	$shares = querySharesFromAccount($id, $symbol, "SUM(num_shares)");
+	if(count($shares) < 0) return;
+	return $shares[0][0];
+}
+
+function getInitialValueOfSharesOwned($id, $symbol) 
+{
+	$shares = querySharesFromAccount($id, $symbol, "SUM(num_shares*purchase_price)");
+	if(count($shares) < 0) return;
+	return $shares[0][0];
+}
+
+function querySharesFromAccount($id, $symbol, $select_expr) 
 {
         //sql connect to DB
         $mysqli = getSQLCredentials();
@@ -95,14 +133,14 @@ function getNumSharesOwned($id, $symbol)
 
         $id = $mysqli->real_escape_string($id);
         $symbol = $mysqli->real_escape_string($symbol);
-        $result = $mysqli->query("select SUM(num_shares) from AccountOwnedStocks as stocks inner join Account on stocks.account_id = Account.id where account_id = $id AND symbol = '$symbol' AND is_valid = 1");
+        $result = $mysqli->query("select $select_expr from AccountOwnedStocks as stocks inner join Account on stocks.account_id = Account.id where account_id = $id AND symbol = '$symbol' AND is_valid = 1");
 
+	$ret = Array();
         while ($row = $result->fetch_row()) {
-                $ret = floatval($row[0]);
-              	$mysqli->close();
-		return $ret;
+                $ret[] = $row;
         }
-        return -1;
+        $mysqli->close();
+        return $ret;
 }
 
 function buyShares($accountID, $symbol, $numShares, $pricePerShare)
@@ -110,7 +148,8 @@ function buyShares($accountID, $symbol, $numShares, $pricePerShare)
 	$totalCost = $numShares * $pricePerShare;
 	$totalBalance = getBalanceFromAccount($accountID);
 	if($totalCost > $totalBalance) {
-		printf("Funds for $accountID are not sufficient to purchase $numShares of $symbol!");	
+		printf("Funds for $accountID are not sufficient to purchase $numShares of $symbol!");
+		return;	
 	}
 
 	//sql connect to DB
